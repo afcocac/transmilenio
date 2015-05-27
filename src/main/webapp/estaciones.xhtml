@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Estaciones</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/templateUsuario.xhtml">
+            <ui:define name="content">
+
+                <h:form id="form">
+                    <p:growl id="msgs" showDetail="true" />
+                    <p:tabView orientation="left" value="#{troncalBean.listaTroncales}" var="troncal">
+                        <p:tab title="#{troncal.nombre}">
+                            <p:tabView orientation="left" value="#{troncal.estacionesDTO}" var="estacion" >
+                                <p:tab title="#{estacion.nombre}">
+
+                                    Troncal:<br></br>
+                                    #{mostrarEstacionBean.estacionId=estacion.id}
+                                    <br></br>
+                                    Estación:<br></br>
+                                    #{mostrarEstacionBean.obtener()}
+                                    #{mostrarEstacionBean.estacionDTO.nombre}
+                                    <br></br>
+                                    Dirección:<br></br>
+                                    #{mostrarEstacionBean.estacionDTO.direccion}
+                                    <br></br>
+                                    Plano:
+                                    <img src="#{mostrarEstacionBean.estacionDTO.plano}"/>
+                                    <br></br>
+
+                                </p:tab>
+                            </p:tabView>
+                        </p:tab>
+                    </p:tabView>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

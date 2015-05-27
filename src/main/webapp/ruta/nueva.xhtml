@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Nueva Ruta</title>
+            </f:facet>
+        </h:head>
+
+        <h:body >
+
+            <f:metadata>
+                <f:viewParam name="troncalId" value="#{rutaBean.id}" />
+                <f:event type="preRenderView" listener='#{rutaBean.obtener}'/>
+            </f:metadata>
+
+
+            <ui:composition template="/template/templateAdmin.xhtml">
+                <ui:define name="content">
+
+                    <p:panel id="panel" header="Nueva Ruta">
+                        <p:messages id="msgs" />
+                        <h:panelGrid columns="3" cellpadding="7">
+
+                            <p:outputLabel for="lastname" value="Numero:" />
+                            <p:inputText id="lastname" value="#{rutaBean.rutaDTO.numero}" label="Lastname" required="true">
+                                <f:validateLength minimum="2" maximum="200" />
+                                <p:ajax update="msgLastname" event="keyup" />
+                            </p:inputText>
+                            <p:message for="lastname" id="msgLastname" display="icon" />
+
+                            <p:outputLabel for="horarioSemana" value="Horario Lun-Vie" />
+                            <p:inputText id="horarioSemana" value="#{rutaBean.rutaDTO.horarioLunVie}" label="Lastname">
+                                <f:validateLength maximum="200" />
+                                <p:ajax update="msgHorarioSemana" event="keyup" />
+                            </p:inputText>
+                            <p:message for="horarioSemana" id="msgHorarioSemana" display="icon" />
+
+                            <p:outputLabel for="horarioSabado" value="Horario Sab" />
+                            <p:inputText id="horarioSabado" value="#{rutaBean.rutaDTO.horarioSab}" label="Lastname">
+                                <f:validateLength maximum="200" />
+                                <p:ajax update="msgHorarioSabado" event="keyup" />
+                            </p:inputText>
+                            <p:message for="horarioSabado" id="msgHorarioSabado" display="icon" />
+
+                            <p:outputLabel for="horarioDomFes" value="Horario Dom-Fes" />
+                            <p:inputText id="horarioDomFes" value="#{rutaBean.rutaDTO.horarioDomFes}" label="Lastname">
+                                <f:validateLength maximum="200" />
+                                <p:ajax update="msgHorarioDomFes" event="keyup" />
+                            </p:inputText>
+                            <p:message for="horarioDomFes" id="msgHorarioDomFes" display="icon" />
+
+                            <p:outputLabel for="paradas" value="Paradas" />
+                            <p:pickList id="paradas" converter="rutaDTOConverter" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" value="#{rutaBean.estaciones}" var="estacion" itemLabel="#{estacion.nombre}" itemValue="#{estacion}">  
+                                <f:facet name="sourceCaption">Estaciones Disponibles</f:facet>
+                                <f:facet name="targetCaption">Paradas</f:facet>
+                            </p:pickList>
+                            <p:message for="paradas" id="msgParadas" display="icon" />
+
+
+                            <p:outputLabel value="Imagen" />
+                            <p:fileUpload value="#{rutaBean.file}" mode="simple" />
+
+                        </h:panelGrid>
+
+                        <p:commandButton value="Guardar" ajax="false" icon="ui-icon-check" actionListener="#{rutaBean.guardarRuta}"  />
+                    </p:panel>
+
+
+                </ui:define>
+            </ui:composition>
+
+        </h:body>
+
+    </f:view>
+</html>
+

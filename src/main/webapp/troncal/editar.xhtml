@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Editar</title>
+        </f:facet>
+
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="troncalId" value="#{editarTroncalBean.troncalId}" />
+            <f:event type="preRenderView" listener='#{editarTroncalBean.obtener}'/>
+        </f:metadata>
+        <ui:composition template="/template/templateAdmin.xhtml">
+            <ui:define name="content">
+
+                <p:panel id="panel" header="Editar Troncal">
+                    <p:messages id="msgs" />
+
+                    <h:panelGrid columns="3" >
+                        <p:outputLabel for="lastname" value="Troncal:" />
+                        <p:inputText id="lastname" value="#{editarTroncalBean.nombreTroncal}" label="Lastname" required="true">
+                            <f:validateLength minimum="2" maximum="200" />
+                            <p:ajax update="msgLastname" event="keyup" />
+                        </p:inputText>
+                        <p:message for="lastname" id="msgLastname" display="icon" />
+
+
+
+                    </h:panelGrid>
+                    <p:commandButton value="Actualizar" ajax="false" action="#{editarTroncalBean.actualizar()}"/>
+
+                </p:panel>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

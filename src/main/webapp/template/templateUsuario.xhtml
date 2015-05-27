@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form>
+                
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                        <ui:insert name="header"><h1 style="text-align: center">Transmifacil</h1></ui:insert>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                        <ui:insert name="footer">Andrés Coca - Sebastian Calvo</ui:insert>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="west" size="175" header="Menu" collapsible="true">
+                        <ui:insert name="left">
+                            <p:menu>
+                                <p:submenu label="Troncales">
+                                    <p:menuitem value="Ver Troncales" outcome="/troncales"/>
+                                </p:submenu>
+                                <p:submenu label="Estaciones">
+                                    <p:menuitem value="Ver Estaciones" outcome="/estaciones"/>
+                                    <p:menuitem value="Consultar Estación" outcome="/consultarEstacion"/>
+                                </p:submenu>
+                                <p:submenu label="Rutas">
+                                    <p:menuitem value="Ver Rutas" outcome="/rutas"/>
+                                    <p:menuitem value="Consultar Ruta" outcome="/consultarRuta"/>
+                                </p:submenu>
+                               
+                           
+                            </p:menu>
+                            
+                        </ui:insert>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <ui:insert name="content">Content</ui:insert>
+                    </p:layoutUnit>
+
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+

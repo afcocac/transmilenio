@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Mostrar Estacion</title>
+            </f:facet>
+
+
+        </h:head>
+
+        <h:body>
+            <f:metadata>
+                <f:viewParam name="troncalId" value="#{mostrarEstacionBean.estacionId}" />
+                <f:event type="preRenderView" listener='#{mostrarEstacionBean.obtener}'/>
+            </f:metadata>
+
+            <ui:composition template="/template/templateAdmin.xhtml">
+                <ui:define name="content">
+                    
+                        <p:panel id="panel" header="Mostrar Estación o Portal">
+                            <p:messages id="msgs" />
+                            <h:panelGrid columns="3" cellpadding="7">
+                               <p:outputLabel value="Nombre :" />
+                               <p:outputLabel value="#{mostrarEstacionBean.estacionDTO.nombre}" />
+                                <br/>
+                                <p:outputLabel value="Dirección:" />
+                                <p:outputLabel value="#{mostrarEstacionBean.estacionDTO.direccion}" />
+                                <br/>
+                                <p:outputLabel value="Troncal:" />
+                                <p:outputLabel value="#{mostrarEstacionBean.estacionDTO.troncalDTO.nombre}" />
+                                <br/>
+                                <p:outputLabel value="Plano:" />
+                                <p:graphicImage value="#{mostrarEstacionBean.estacionDTO.plano}"/>
+                                <br/>
+                                
+                           
+
+                            </h:panelGrid>
+                        </p:panel>
+
+                    </ui:define>
+            </ui:composition>
+        </h:body>
+
+    </f:view>
+</html>
+

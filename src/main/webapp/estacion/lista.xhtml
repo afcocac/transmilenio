@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Lista Estaciones</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/templateAdmin.xhtml">
+            <ui:define name="content">
+
+                <p><p:commandButton value="Nueva Estacion" action="nueva"/></p>
+
+                <p:dataTable var="estacion" value="#{estacionBean.listaEstaciones}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{estacion.id}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{estacion.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Direccion">
+                        <h:outputText value="#{estacion.direccion}" />
+                    </p:column>
+                    
+                    <p:column headerText="Troncal">
+                        <h:outputText value="#{estacion.troncalDTO.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Plano">
+                        <h:outputText value="#{estacion.plano}" />
+                    </p:column>
+                    
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{estacion.estado}" />
+                    </p:column>
+
+                    <p:column headerText="">
+                        <p:link outcome="mostrar" value="Mostrar">
+                            <f:param name="troncalId" value="#{estacion.id}" />
+                        </p:link> -
+                        <p:link outcome="editar" value="Editar">
+                            <f:param name="troncalId" value="#{estacion.id}" />
+                        </p:link> -
+
+                        <h:commandLink onclick="if (!confirm('¿Quiere borrar el registro con id= ' + '#{estacion.id}' + ' y nombre ' + '#{estacion.nombre}' + '?'))
+                                        return false"
+                                       value="Borrar" action="#{estacionBean.borrarEstacion(estacion.id)}"  class="edit_icon" >
+
+                        </h:commandLink> 
+                    </p:column>
+
+                </p:dataTable>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

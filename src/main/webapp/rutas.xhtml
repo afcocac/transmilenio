@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Troncales</title>
+    </h:head>
+    <h:body>
+         <ui:composition template="/template/templateUsuario.xhtml">
+             <ui:define name="content">
+                  
+    <p:growl id="msgs" showDetail="true" />
+       
+        <h3>Rutas pertenecientes a una troncal</h3>
+        <p:accordionPanel value="#{troncalBean.listaTroncales}" dynamic="true" cache="true" var="troncal"  >
+        
+        
+ 
+        <p:tab title="#{troncal.nombre}">
+            <h:outputText value="#{troncalBean.nombreTab=troncal.nombre}" />
+             
+             <p:dataList value="#{troncalBean.listaRutas}" var="estacion" type="ordered"  >
+               
+        
+        #{estacion}
+    </p:dataList>
+            
+        </p:tab>
+        
+    </p:accordionPanel>
+        
+        </ui:define>
+         </ui:composition>
+             
+        
+    </h:body>
+</html>
+

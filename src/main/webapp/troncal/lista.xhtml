@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/templateAdmin.xhtml">
+            <ui:define name="content">
+
+                <p><p:commandButton value="Nueva Troncal" action="nueva"/></p>
+
+                <p:dataTable var="troncal" value="#{troncalBean.listaTroncales}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{troncal.id}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{troncal.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{troncal.estado}" />
+                    </p:column>
+
+                    <p:column headerText="">
+                        <p:link outcome="mostrar" value="Mostrar">
+                            <f:param name="troncalId" value="#{troncal.id}" />
+                        </p:link> -
+                        <p:link outcome="editar" value="Editar">
+                            <f:param name="troncalId" value="#{troncal.id}" />
+                        </p:link> -
+
+                        <h:commandLink onclick="if (!confirm('¿Quiere borrar el registro con id= ' + '#{troncal.id}' + ' y nombre ' + '#{troncal.nombre}' + '?'))
+                                        return false"
+                                       value="Borrar" action="#{troncalBean.borrarTroncal(troncal.id)}"  class="edit_icon" >
+
+                        </h:commandLink> 
+                    </p:column>
+
+                </p:dataTable>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
